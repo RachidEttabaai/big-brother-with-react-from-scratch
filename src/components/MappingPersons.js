@@ -60,7 +60,7 @@ export default function MappingPersons(props){
             <Form.Group controlId="exampleForm.SelectCustom">
               <Form.Label>Select a person to follow their movements</Form.Label>
                 <Form.Control as="select" custom onChange={e => setId(e.target.value)}>
-                    <option value="none" selected disabled hidden> 
+                    <option value="none"> 
                       Select a Person
                     </option> 
                 {
