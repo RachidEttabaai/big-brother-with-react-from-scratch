@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import { Map, Marker, Popup, TileLayer, Polyline } from "react-leaflet";
 import { Form } from 'react-bootstrap';
 
 function PositionsPersons(tabpersons,id){
@@ -44,12 +44,15 @@ export default function MappingPersons(props){
     let personsidentities = PersonsIdentities(personlist);
 
     const mainposition = [166.468694, -78.880765];
-    const zoom = 2;
+    const zoom = 1.5;
 
-    let positionsperson;
+    let positionsperson,positionspersonpolyline = [];
 
     if(id){
       positionsperson = PositionsPersons(personlist,id);
+      positionsperson.map(positionperson =>{
+        positionspersonpolyline.push([positionperson.latitude,positionperson.longitude])
+      });
     }else{
       positionsperson = [];
     }
@@ -85,7 +88,8 @@ export default function MappingPersons(props){
                 </Marker> 
               ))
             }
-            {/* */}
+            <Polyline color="red" positions={positionspersonpolyline} />
+            
           </Map>
       </>
     );
